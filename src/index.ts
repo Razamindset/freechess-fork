@@ -1,7 +1,6 @@
 import express from "express";
 import apiRouter from "./api";
 import dotenv from "dotenv";
-import cors from "cors";
 
 dotenv.config();
 
@@ -9,17 +8,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const SECRET_KEY = process.env.SECRET_KEY || null;
-const ALLOWED_CLIENT_ORIGIN =
-    process.env.ALLOWED_CLIENT_ORIGIN || "https://knightly-flax.vercel.app";
 
 app.use(express.json());
-
-const corsOptions = {
-    origin: ALLOWED_CLIENT_ORIGIN,
-    methods: ["GET", "POST"],
-};
-
-app.use(cors(corsOptions));
 
 // Secret key middleware for API routes
 app.use("/api", (req, res, next) => {
@@ -46,7 +36,7 @@ app.get("/ping", (_req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log("Server running on http://localhost:3000");
+    console.log("Server running on http://localhost:" + PORT);
 });
 
 module.exports = app;

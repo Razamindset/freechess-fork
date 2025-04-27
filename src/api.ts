@@ -5,7 +5,9 @@ import { ReportRequestBody } from "./lib/types/RequestBody";
 const router = Router();
 
 router.post("/report", async (req, res) => {
-    let { positions, captchaToken }: ReportRequestBody = req.body;
+    let { positions }: ReportRequestBody = req.body;
+
+    console.log("A request was recieved");
 
     if (!positions) {
         return res.status(400).json({ message: "Missing parameters." });
